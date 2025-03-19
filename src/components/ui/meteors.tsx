@@ -6,11 +6,7 @@ interface MeteorsProps {
   number?: number;
 }
 
-interface MeteorProps {
-  className?: string;
-}
-
-const Meteor = ({ className }: MeteorProps) => {
+const Meteor = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
@@ -22,14 +18,14 @@ const Meteor = ({ className }: MeteorProps) => {
   );
 };
 
-export const Meteors = ({ number = 20 }: MeteorsProps) => {
+export const Meteors = ({ number = 10 }: MeteorsProps) => {
   const [meteorStyles, setMeteorStyles] = useState<Array<{ top: string; left: string; delay: string }>>([]);
 
   useEffect(() => {
-    const styles = [...new Array(number)].map(() => ({
+    const styles = [...new Array(Math.min(number, 10))].map(() => ({
       top: generateRandomNumber(-20, 80) + "%",
       left: generateRandomNumber(-20, 80) + "%",
-      delay: generateRandomNumber(0, 3000) + "ms",
+      delay: generateRandomNumber(0, 2000) + "ms",
     }));
     setMeteorStyles(styles);
   }, [number]);
