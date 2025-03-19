@@ -7,12 +7,11 @@ import { Meteors } from '@/components/ui/meteors';
 import { ErrorBoundary } from '@/components/ui/error-boundary';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
 
-// Lazy load sections with loading priority
 const BoltSection = lazy(() => import('./components/sections/BoltSection'));
-const EventInfoSection = lazy(() => import('./components/sections/EventInfoSection'));
+const SponsorsSection = lazy(() => import('./components/sections/SponsorsSection'));
 const PrizesSection = lazy(() => import('./components/sections/PrizesSection'));
 const JudgesSection = lazy(() => import('./components/sections/JudgesSection'));
-const SponsorsSection = lazy(() => import('./components/sections/SponsorsSection'));
+const EventInfoSection = lazy(() => import('./components/sections/EventInfoSection'));
 
 const avatarUrls = [
   "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?&w=40&h=40&dpr=2&q=80",
@@ -63,13 +62,13 @@ function HeroSection() {
                   href="https://form.typeform.com/to/wf94YwH4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="primary-button w-full sm:w-auto text-center transform-gpu"
+                  className="primary-button w-full sm:w-auto text-center"
                 >
                   Register Now
                 </a>
                 <a
                   href="#learn-more"
-                  className="w-full sm:w-auto text-center px-8 py-4 border border-neutral-800 text-white text-lg font-bold hover:bg-white/5 transition-colors duration-200 rounded-lg animate-text transform-gpu"
+                  className="w-full sm:w-auto text-center px-8 py-4 border border-neutral-800 text-white text-lg font-bold hover:bg-white/5 transition-colors duration-200 rounded-lg animate-text"
                 >
                   Learn More
                 </a>
@@ -166,7 +165,7 @@ function Footer() {
                   <a
                     href={href}
                     onClick={(e) => handleNavigation(e, href)}
-                    className="text-neutral-400 hover:text-white transition-colors animate-text block py-1 transform-gpu"
+                    className="text-neutral-400 hover:text-white transition-colors animate-text block py-1"
                   >
                     {label}
                   </a>
@@ -182,7 +181,7 @@ function Footer() {
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-neutral-400 hover:text-white transition-colors animate-text block py-1 transform-gpu"
+                    className="text-neutral-400 hover:text-white transition-colors animate-text block py-1"
                   >
                     {label}
                   </a>
@@ -200,7 +199,7 @@ function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-neutral-400 hover:text-white transition-colors layout-transition p-2 transform-gpu"
+                  className="text-neutral-400 hover:text-white transition-colors layout-transition p-2"
                   aria-label={label}
                 >
                   <Icon size={24} />
@@ -218,7 +217,7 @@ function Footer() {
                 <a
                   key={label}
                   href={href}
-                  className="hover:text-white transition-colors animate-text transform-gpu"
+                  className="hover:text-white transition-colors animate-text"
                 >
                   {label}
                 </a>

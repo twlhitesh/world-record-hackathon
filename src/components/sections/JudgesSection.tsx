@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const JudgesSection = () => {
@@ -48,10 +49,11 @@ const JudgesSection = () => {
       <div className="absolute inset-0 [background:repeating-linear-gradient(-45deg,_#000,_#000_2px,_transparent_2px,_transparent_8px)] opacity-5" />
       
       <div className="max-w-[1400px] mx-auto px-8 lg:px-12 relative z-10">
-        <div 
-          className={`text-center mb-16 transition-all duration-600 ease-out transform-gpu ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
         >
           <div className="font-mono text-sm tracking-wider text-neutral-500 mb-4">
             MEET THE JUDGES
@@ -62,23 +64,22 @@ const JudgesSection = () => {
           <p className="text-neutral-400 max-w-2xl mx-auto">
             Your projects will be evaluated by some of the most respected names in technology
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {judges.map((judge, index) => (
-            <div
+            <motion.div
               key={judge.name}
-              className={`group relative transition-all duration-500 ease-out transform-gpu ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className="group relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="aspect-square overflow-hidden rounded-lg mb-4 bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 transition-all duration-300 ease-out group-hover:border-neutral-700">
+              <div className="aspect-square overflow-hidden rounded-lg mb-4 bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 group-hover:border-neutral-700 transition-all duration-300">
                 <img
                   src={judge.image}
                   alt={judge.name}
-                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
               <h3 className="text-xl font-bold mb-1">{judge.name}</h3>
@@ -86,7 +87,7 @@ const JudgesSection = () => {
                 {judge.role} @ {judge.company}
               </div>
               <p className="text-sm text-neutral-400">{judge.bio}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
