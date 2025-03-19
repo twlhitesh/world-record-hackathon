@@ -1,15 +1,18 @@
 import React from 'react';
-import { FaSupabase, FaNetlify, FaCloudflare, FaSentry, FaBolt, FaLayerGroup, FaAlgolia } from 'react-icons/fa';
+import { IconBrandGithub, IconBrandOpenai, IconBrandSupabase, IconBrandVercel, IconBrandTypescript, IconBrandTailwind, IconBrandStripe, IconBrandNextjs, IconBrandCloudflare, IconBrandAws } from '@tabler/icons-react';
 
 const SponsorsSection = () => {
   const sponsors = [
-    { icon: FaSupabase, name: "Supabase", color: "#3ECF8E" },
-    { icon: FaNetlify, name: "Netlify", color: "#00C7B7" },
-    { icon: FaCloudflare, name: "Cloudflare", color: "#F48120" },
-    { icon: FaSentry, name: "Sentry", color: "#FB4226" },
-    { icon: FaBolt, name: "Bolt", color: "#F8D210" },
-    { icon: FaLayerGroup, name: "Loops", color: "#8E8E8E" },
-    { icon: FaAlgolia, name: "Algorand Foundation", color: "#00B5FF" }
+    { icon: IconBrandOpenai, name: "OpenAI" },
+    { icon: IconBrandSupabase, name: "Supabase" },
+    { icon: IconBrandVercel, name: "Vercel" },
+    { icon: IconBrandStripe, name: "Stripe" },
+    { icon: IconBrandGithub, name: "GitHub" },
+    { icon: IconBrandTypescript, name: "TypeScript" },
+    { icon: IconBrandTailwind, name: "Tailwind" },
+    { icon: IconBrandNextjs, name: "Next.js" },
+    { icon: IconBrandCloudflare, name: "Cloudflare" },
+    { icon: IconBrandAws, name: "AWS" }
   ];
 
   return (
@@ -41,8 +44,8 @@ const SponsorsSection = () => {
             >
               <sponsor.icon 
                 size={48} 
-                className={`transition-colors duration-300 ease-out transform-gpu`}
-                style={{ color: sponsor.color }}
+                className="text-white/60 transition-colors duration-300 ease-out hover:text-white transform-gpu"
+                stroke={1.5}
               />
             </div>
           ))}
