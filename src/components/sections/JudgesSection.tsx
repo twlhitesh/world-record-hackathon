@@ -19,7 +19,7 @@ const JudgesSection = () => {
       name: "Greg Eisenberg",
       role: "Host & Judge",
       company: "Developer Advocate",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?&w=400&h=400&q=80",
+      image: "https://yt3.googleusercontent.com/5wiiTxMamM0NnCmGOt0iJ6eoVRmFLNIGF-BEiTZ_AVqaS02YIxAsB-2XY6xwLCUWQfoENG1MHKo=s900-c-k-c0x00ffffff-no-rj",
       bio: "Experienced developer advocate and educator, produced numerous helpful resources for the developer community."
     },
     {
