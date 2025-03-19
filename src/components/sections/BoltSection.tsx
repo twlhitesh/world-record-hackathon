@@ -37,7 +37,7 @@ const BoltSection = () => {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
               <img
-                src="src/favicon.svg"
+                src="https://pbs.twimg.com/profile_images/1880702021122342912/fe9TlQqJ_400x400.jpg"
                 alt="Podif Logo"
                 className="w-5 h-5"
               />
