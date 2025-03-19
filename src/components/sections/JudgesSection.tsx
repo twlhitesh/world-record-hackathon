@@ -30,11 +30,11 @@ const JudgesSection = () => {
       bio: "Leading researcher in artificial intelligence with expertise in machine learning and neural networks."
     },
     {
-      name: "Elena Rodriguez",
+      name: "Theo Browne",
       role: "Technical Judge",
       company: "Engineering Director",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?&w=400&h=400&q=80",
-      bio: "Engineering leader specializing in scalable systems and innovative technology solutions."
+      image: "https://pbs.twimg.com/profile_images/1799982162831396865/Fnol01I1_400x400.jpg",
+      bio: "Full time CEO @t3dotchat. Part time YouTuber, investor, and developer"
     }
   ];
 
