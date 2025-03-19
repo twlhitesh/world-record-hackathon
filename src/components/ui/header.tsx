@@ -48,7 +48,7 @@ export function Header() {
         <div className="flex items-center justify-between h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center transform-gpu">
-              <img src="src/favicon.svg" alt="Bolt Logo" className="w-5 h-5 text-white" />
+              <img src="https://pbs.twimg.com/profile_images/1880702021122342912/fe9TlQqJ_400x400.jpg" alt="Bolt Logo" className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="font-black text-xl tracking-tight flex items-center gap-1">
