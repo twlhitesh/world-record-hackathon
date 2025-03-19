@@ -23,10 +23,10 @@ const JudgesSection = () => {
       bio: "Experienced developer advocate and educator, produced numerous helpful resources for the developer community."
     },
     {
-      name: "Dr. Sarah Chen",
+      name: "Logan Kilpatrick",
       role: "AI Expert",
       company: "Research Director",
-      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?&w=400&h=400&q=80",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQEd4p61kPfN5Q/profile-displayphoto-shrink_800_800/B56ZPDeUTFGkAc-/0/1734151325701?e=1747872000&v=beta&t=kMFljMnrXTgoxSc9KmxrTNy4Wz2rO_owuGyBceBkWpw",
       bio: "Leading researcher in artificial intelligence with expertise in machine learning and neural networks."
     },
     {
