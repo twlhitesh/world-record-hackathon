@@ -26,7 +26,7 @@ const JudgesSection = () => {
       name: "Evan You",
       role: "Judge",
       company: "VoidZero",
-      image: "https://media.licdn.com/dms/image/v2/D5603AQHVUztvkmWnIA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731407276956?e=1747872000&v=beta&t=j5iUNYTV-9i7K2zmYuN58n8P6jBN2eZ80DNkMh83Vco",
+      image: "https://pbs.twimg.com/profile_images/1856284397072478208/hSEXLkPN_400x400.jpg",
       bio: "Founder @voidzerodev / Creator @vuejs & @vite_js"
     },
     {
