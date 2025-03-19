@@ -23,6 +23,13 @@ const JudgesSection = () => {
       bio: "Experienced developer advocate and educator, produced numerous helpful resources for the developer community."
     },
     {
+      name: "Evan You",
+      role: "Judge",
+      company: "VoidZero",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQHVUztvkmWnIA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731407276956?e=1747872000&v=beta&t=j5iUNYTV-9i7K2zmYuN58n8P6jBN2eZ80DNkMh83Vco",
+      bio: "Founder @voidzerodev / Creator @vuejs & @vite_js"
+    },
+    {
       name: "Sarah Guo",
       role: "Judge",
       company: "Conviction",
