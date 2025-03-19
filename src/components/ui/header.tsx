@@ -53,7 +53,7 @@ export function Header() {
             <div>
               <div className="font-black text-xl tracking-tight flex items-center gap-1">
                 <span className="text-white">BOLT.NEW</span>
-                <span className="text-blue-500">╰⊱♥⊱╮</span>
+                <span className="text-blue-500">🗲</span>
                 <span className="hidden sm:block text-white">HACKATHON</span>
               </div>
               <div className="text-[10px] text-neutral-500">
