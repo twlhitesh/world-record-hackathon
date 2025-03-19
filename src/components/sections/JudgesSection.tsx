@@ -37,6 +37,13 @@ const JudgesSection = () => {
       bio: "Founder @voidzerodev / Creator @vuejs & @vite_js"
     },
     {
+      name: "Karthik Puvvada",
+      role: "Judge",
+      company: "Paddle",
+      image: "https://imgs.search.brave.com/yjy-LstvMU2UK_FYUDBhZFEDZ0QfvRZkDfCGzoDaBdQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pbnRyby5jby9h/dmF0YXJzLzMxMjMw/NWlLakFWTTNaLmpw/Zw",
+      bio: "Program Director for On Deck No-Code and leads Founder Relations at Paddle"
+    },
+    {
       name: "Sarah Guo",
       role: "Judge",
       company: "Conviction",
