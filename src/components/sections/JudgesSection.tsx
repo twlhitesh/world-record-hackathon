@@ -25,7 +25,7 @@ const JudgesSection = () => {
     {
       name: "Logan Kilpatrick",
       role: "AI Expert",
-      company: "Research Director",
+      company: "Google Deepmind",
       image: "https://pbs.twimg.com/profile_images/1379817647139737600/YHL9uBk0_400x400.jpg",
       bio: "Leading researcher in artificial intelligence with expertise in machine learning and neural networks."
     },
