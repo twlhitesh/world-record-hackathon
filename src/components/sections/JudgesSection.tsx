@@ -12,7 +12,7 @@ const JudgesSection = () => {
       name: "Peter Levels",
       role: "Lead Judge",
       company: "Serial Entrepreneur",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?&w=400&h=400&q=80",
+      image: "https://ibb.co/bRCMGqm5",
       bio: "Successful serial entrepreneur known for creating multiple profitable products. Expert in bootstrapped startups and indie hacking."
     },
     {
