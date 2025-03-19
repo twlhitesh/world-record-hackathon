@@ -23,6 +23,13 @@ const JudgesSection = () => {
       bio: "Experienced developer advocate and educator, produced numerous helpful resources for the developer community."
     },
     {
+      name: "Sarah Guo",
+      role: "Judge",
+      company: "Conviction",
+      image: "https://pbs.twimg.com/profile_images/1689443134919327744/geqEJeF8_400x400.jpg",
+      bio: "startup investor/helper, founder @conviction . accelerating AI adoption, interested in progress. tech podcast: @nopriorspod"
+    },
+    {
       name: "Logan Kilpatrick",
       role: "AI Expert",
       company: "Google Deepmind",
