@@ -9,6 +9,13 @@ const JudgesSection = () => {
 
   const judges = [
     {
+      name: "Eric Simons",
+      role: "Host & Lead Judge",
+      company: "Bolt.new / Stackblitz",
+      image: "https://pbs.twimg.com/profile_images/1749853832669270016/HKjutsvf_400x400.jpg",
+      bio: "Successful entrepreneur CEO Bolt.new"
+    },
+    {
       name: "Peter Levels",
       role: "Lead Judge",
       company: "Serial Entrepreneur",
