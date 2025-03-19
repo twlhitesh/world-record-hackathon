@@ -9,7 +9,7 @@ const EventInfoSection = () => {
       content: (
         <div>
           <p className="text-neutral-300 text-sm md:text-base font-normal mb-8">
-            The $1 Million Bolt.new Hackathon emerged from a simple social media suggestion that quickly evolved into what could become the world's largest developer competition. Our vision is to bring together 100,000 developers to push the boundaries of what's possible with AI-assisted development.
+            The $1 Million Bolt.new Hackathon emerged from a simple social media suggestion that quickly evolved into what could become the world's largest developer competition. Our vision is to bring together 100,000+ developers to push the boundaries of what's possible with AI-assisted development.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
