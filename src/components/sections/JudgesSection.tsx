@@ -12,7 +12,7 @@ const JudgesSection = () => {
       name: "Peter Levels",
       role: "Lead Judge",
       company: "Serial Entrepreneur",
-      image: "https://i.ibb.co/Hpbf914T/levelsio.jpg",
+      image: "https://pbs.twimg.com/profile_images/1589756412078555136/YlXMBzhp_400x400.jpg",
       bio: "Successful serial entrepreneur known for creating multiple profitable products. Expert in bootstrapped startups and indie hacking."
     },
     {
@@ -26,7 +26,7 @@ const JudgesSection = () => {
       name: "Logan Kilpatrick",
       role: "AI Expert",
       company: "Research Director",
-      image: "https://media.licdn.com/dms/image/v2/D5603AQEd4p61kPfN5Q/profile-displayphoto-shrink_800_800/B56ZPDeUTFGkAc-/0/1734151325701?e=1747872000&v=beta&t=kMFljMnrXTgoxSc9KmxrTNy4Wz2rO_owuGyBceBkWpw",
+      image: "https://pbs.twimg.com/profile_images/1379817647139737600/YHL9uBk0_400x400.jpg",
       bio: "Leading researcher in artificial intelligence with expertise in machine learning and neural networks."
     },
     {
