@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    text-rendering: optimizeLegibility;
+    @apply bg-black;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  ::selection {
+    @apply bg-blue-500/30 text-white;
+  }
+
+  /* Optimize scrolling performance */
+  * {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    perspective: 1000;
+    will-change: transform;
+  }
+
+  /* Mobile-optimized touch targets */
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+    touch-action: manipulation;
+  }
+
+  /* Improved mobile form elements */
+  input, select, textarea {
+    @apply appearance-none;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  /* Everlane inspired clean scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 2px;
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.4);
+  }
+
+  /* Kristina Plummer inspired text reveal */
+  .text-reveal-slide {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealSlide 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes revealSlide {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Maaemo inspired luxury transitions */
+  .luxury-fade {
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Dopple Press inspired image reveal */
+  .image-reveal {
+    clip-path: inset(0 100% 0 0);
+    animation: imageReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes imageReveal {
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* Wild inspired text gradient */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600;
+    background-size: 200% auto;
+    animation: textShimmer 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes textShimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Mobile-optimized active states */
+  @media (hover: none) {
+    .hover-lift:active {
+      transform: translateY(-2px);
+    }
+    
+    .primary-button:active {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+@layer components {
+  /* Holly's Mintboxx inspired glass card */
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/5 border border-white/5 rounded-2xl;
+    transform: translateZ(0);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    @apply bg-white/8 border-white/10;
+    transform: translateY(-2px);
+  }
+
+  /* Jeton inspired button */
+  .primary-button {
+    @apply relative overflow-hidden bg-blue-500 text-white px-8 py-4 rounded-lg font-bold;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.15);
+  }
+
+  .primary-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
+  }
+
+  .primary-button:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Anthony Wiktor inspired feature card */
+  .feature-card {
+    @apply relative overflow-hidden rounded-2xl bg-white/5 p-6;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .feature-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .feature-card:hover {
+    @apply bg-white/8;
+    transform: translateY(-4px);
+  }
+
+  .feature-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Scope Copenhagen inspired text animations */
+  .animate-text {
+    @apply relative overflow-hidden;
+    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-text::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-blue-500 scale-x-0;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+  }
+
+  .animate-text:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Mazda inspired image hover */
+  .image-hover {
+    @apply relative overflow-hidden;
+  }
+
+  .image-hover img {
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-hover:hover img {
+    transform: scale(1.03);
+  }
+
+  /* OK Drugs inspired section transitions */
+  .section-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: sectionFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes sectionFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Enhanced animation keyframes */
+@keyframes shimmer {
+  to {
+    transform: translateX(100%) translateZ(0);
+  }
+}
+
+/* Noni Cermica inspired vintage text */
+.vintage-text {
+  @apply relative;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Crop The Block inspired layout transitions */
+.layout-transition {
+  @apply transition-all duration-700 ease-out;
+}
+
+.layout-transition:hover {
+  @apply transform -translate-y-1;
+}
+
+/* Enhanced hover states */
+.hover-lift {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Smooth background transitions */
+.bg-transition {
+  transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile-optimized animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
