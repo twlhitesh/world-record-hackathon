@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
 interface SpinnerProps {
   size?: "sm" | "md" | "lg";
@@ -6,6 +7,34 @@ interface SpinnerProps {
 }
 
 export function Spinner({ size = "md", className }: SpinnerProps) {
+  useEffect(() => {
+    // Report loading performance metrics
+    const reportLoadingMetric = () => {
+      if (window.performance && window.performance.mark) {
+        window.performance.mark('spinner-start');
+        
+        return () => {
+          window.performance.mark('spinner-end');
+          window.performance.measure(
+            'spinner-duration',
+            'spinner-start',
+            'spinner-end'
+          );
+          
+          const measures = window.performance.getEntriesByName('spinner-duration');
+          if (measures.length > 0) {
+            console.log(`Loading duration: ${measures[0].duration}ms`);
+          }
+        };
+      }
+    };
+
+    const cleanup = reportLoadingMetric();
+    return () => {
+      cleanup?.();
+    };
+  }, []);
+
   return (
     <div
       className={cn(

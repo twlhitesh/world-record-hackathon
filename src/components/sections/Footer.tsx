@@ -50,7 +50,7 @@ const Footer = () => {
                   <span className="text-blue-500">//</span>
                   <span className="text-white">HACKATHON</span>
                 </div>
-                <div className="text-xs text-neutral-500">March 18, 2025</div>
+                <div className="text-xs text-neutral-500">DATE TBD</div>
               </div>
             </div>
             <p className="text-sm text-neutral-400">

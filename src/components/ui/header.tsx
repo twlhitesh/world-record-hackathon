@@ -34,20 +34,7 @@ export function Header() {
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
-    // Fix for mobile menu scroll lock
-    if (!isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.body.style.top = `-${window.scrollY}px`;
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.overflow = '';
-      document.body.style.width = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
   };
 
   const menuItems = [
@@ -62,14 +49,23 @@ export function Header() {
     window.open('https://form.typeform.com/to/wf94YwH4', '_blank', 'noopener,noreferrer');
   };
 
+  const handleNavClick = (id: string) => {
+    setIsMenuOpen(false);
+    document.body.style.overflow = '';
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'h-16' : 'h-20'
       }`}
     >
       <nav 
-        className={`h-full transition-colors duration-300 border-b ${
+        className={`h-full transition-all duration-300 border-b ${
           isScrolled || isMenuOpen
             ? 'bg-black/90 backdrop-blur-md border-white/10' 
             : 'bg-transparent border-transparent'
@@ -101,13 +97,21 @@ export function Header() {
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(id);
+                }}
                 className={`relative px-2 py-1 text-sm font-medium transition-colors ${
                   activeSection === id ? 'text-white' : 'text-neutral-400 hover:text-white'
                 }`}
               >
                 {label}
                 {activeSection === id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
                 )}
               </a>
             ))}
@@ -117,7 +121,7 @@ export function Header() {
             <a 
               href="#register"
               onClick={handleRegister}
-              className="relative px-6 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium"
+              className="relative px-6 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
             >
               Register Now
             </a>
@@ -127,34 +131,71 @@ export function Header() {
               onClick={handleMenuClick}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isMenuOpen ? "close" : "menu"}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMenuOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+                </motion.div>
+              </AnimatePresence>
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu - Fixed positioning to prevent scroll issues */}
-      {isMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black z-40 md:hidden"
-          style={{ top: isScrolled ? '64px' : '80px' }}
-        >
-          <div className="flex flex-col items-center justify-center h-full pb-20">
-            {menuItems.map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className="text-4xl font-black text-neutral-200 hover:text-white py-4"
-                onClick={() => {
-                  handleMenuClick();
-                }}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 md:hidden"
+            style={{ top: isScrolled ? '64px' : '80px' }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative h-[calc(100vh-80px)] bg-black/95 backdrop-blur-xl"
+            >
+              <div className="flex flex-col items-center justify-center h-full pb-20">
+                {menuItems.map(({ id, label }, index) => (
+                  <motion.div
+                    key={id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="mb-8"
+                  >
+                    <a
+                      href={`#${id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(id);
+                      }}
+                      className={`text-4xl font-black ${
+                        activeSection === id 
+                          ? 'text-white' 
+                          : 'text-neutral-400 hover:text-white'
+                      } transition-colors`}
+                    >
+                      {label}
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

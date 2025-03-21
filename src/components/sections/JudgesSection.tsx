@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FollowerPointerCard } from '@/components/ui/following-pointer';
 import { IconChevronDown } from '@tabler/icons-react';
 
 const JudgesSection = () => {
@@ -52,7 +51,7 @@ const JudgesSection = () => {
       name: "Sarah Guo",
       role: "Judge",
       company: "Conviction",
-      image: "https://pbs.twimg.com/profile_images/1689443134919327744/geqEJeF8_400x400.jpg",
+      image: "https://i.insider.com/6408d41c75a7270019daf48f?width=1000&format=jpeg&auto=webp",
       bio: "startup investor/helper, founder @conviction . accelerating AI adoption, interested in progress. tech podcast: @nopriorspod"
     },
     {
@@ -92,6 +91,7 @@ const JudgesSection = () => {
               src={judge.image}
               alt={judge.name}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
           <div className="flex-1 min-w-0">
@@ -129,36 +129,26 @@ const JudgesSection = () => {
 
   // Desktop Judge Card Component
   const DesktopJudgeCard = ({ judge }: { judge: typeof judges[0] }) => (
-    <FollowerPointerCard
-      title={
-        <div className="flex items-center gap-2">
-          <img
-            src={judge.image}
-            alt={judge.name}
-            className="w-5 h-5 rounded-full border border-white/20"
-          />
-          <span>{judge.name}</span>
-        </div>
-      }
-    >
-      <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-800 bg-black transition duration-300 hover:border-neutral-700 hover:bg-neutral-900/50">
-        <div className="relative aspect-square w-full overflow-hidden">
-          <img
-            src={judge.image}
-            alt={judge.name}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
-        </div>
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-white mb-1">{judge.name}</h3>
-          <div className="text-blue-400 font-mono text-sm mb-2">
-            {judge.role} @ {judge.company}
-          </div>
-          <p className="text-sm text-neutral-400">{judge.bio}</p>
-        </div>
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-800 bg-black transition duration-300 hover:border-neutral-700 hover:bg-neutral-900/50">
+      <div className="relative aspect-square w-full overflow-hidden">
+        <img
+          src={judge.image}
+          alt={judge.name}
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          loading="lazy"
+          width={400}
+          height={400}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
       </div>
-    </FollowerPointerCard>
+      <div className="p-6">
+        <h3 className="text-xl font-bold text-white mb-1">{judge.name}</h3>
+        <div className="text-blue-400 font-mono text-sm mb-2">
+          {judge.role} @ {judge.company}
+        </div>
+        <p className="text-sm text-neutral-400">{judge.bio}</p>
+      </div>
+    </div>
   );
 
   return (

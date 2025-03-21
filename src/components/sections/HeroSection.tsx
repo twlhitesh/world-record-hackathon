@@ -53,9 +53,9 @@ function HeroSection() {
                   href="https://form.typeform.com/to/wf94YwH4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white text-lg font-bold group"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white text-lg font-bold group hover:bg-blue-600 transition-colors"
                 >
-                  Register Now
+                  Join Waitlist
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </a>
                 <a

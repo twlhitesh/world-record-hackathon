@@ -10,8 +10,8 @@ const EventInfoSection = () => {
     {
       title: "Event Date",
       icon: IconCalendar,
-      description: "March 18, 2025",
-      details: "72 hours of non-stop innovation with flexible timezone support for global participation",
+      description: "Date TBD",
+      details: "Join our waitlist to be the first to know when dates are announced. The event will run for 72 hours with flexible timezone support for global participation",
       image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=2048&h=1024",
       area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
     },
@@ -175,7 +175,7 @@ const EventInfoSection = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white text-lg font-bold rounded-lg transition-colors group"
           >
-            Register Now
+            Join Waitlist
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </a>
         </div>
