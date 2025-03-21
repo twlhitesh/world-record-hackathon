@@ -91,14 +91,9 @@ export function Globe({ className }: GlobeProps) {
 
   return (
     <div className={cn("relative w-full aspect-square", className)}>
-      <div className="absolute inset-0 [background:radial-gradient(circle_at_center,_#1a1a1a_0%,_transparent_100%)]" />
       <canvas
         ref={canvasRef}
-        className="h-full w-full opacity-100"
-        style={{
-          filter: "brightness(1.2) contrast(1.2)",
-          transform: "scale(1.05)",
-        }}
+        className="h-full w-full"
         onPointerDown={(e) => {
           updatePointerInteraction(e.clientX);
           e.currentTarget.style.cursor = "grabbing";

@@ -30,10 +30,10 @@ function HeroSection() {
                 </div>
                 
                 <h1 className="text-[2.5rem] sm:text-[3.5rem] leading-[0.9] md:text-[5rem] xl:text-[6rem] font-black tracking-tight">
-                  <span className="block text-white [text-shadow:_0_4px_4px_rgb(0_0_0_/_50%)] vintage-text">
+                  <span className="block text-white vintage-text">
                     $1 MILLION
                   </span>
-                  <span className="block text-blue-500 [text-shadow:_0_4px_4px_rgb(0_0_0_/_50%)] vintage-text">
+                  <span className="block text-blue-500 vintage-text">
                     →HACKATHON
                   </span>
                   <span className="block text-2xl sm:text-3xl font-mono mt-4 text-neutral-500 text-reveal-slide">
@@ -42,7 +42,7 @@ function HeroSection() {
                 </h1>
               </div>
               
-              <p className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-light text-neutral-400 [text-shadow:_0_2px_2px_rgb(0_0_0_/_50%)]">
+              <p className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-light text-neutral-400">
                 Join the world's largest hackathon. 
                 <br className="hidden sm:block" />
                 <span className="text-blue-400">Build the future with AI.</span>
@@ -53,14 +53,14 @@ function HeroSection() {
                   href="https://form.typeform.com/to/wf94YwH4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white text-lg font-bold rounded-lg transition-all duration-300 group transform-gpu"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white text-lg font-bold group"
                 >
                   Register Now
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </a>
                 <a
                   href="#about"
-                  className="inline-flex items-center justify-center px-8 py-4 border border-neutral-800 text-white text-lg font-bold hover:bg-white/5 transition-colors duration-200 rounded-lg group transform-gpu"
+                  className="inline-flex items-center justify-center px-8 py-4 text-white text-lg font-bold group"
                 >
                   Learn More
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>

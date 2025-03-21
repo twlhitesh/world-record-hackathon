@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FollowerPointerCard } from '@/components/ui/following-pointer';
+import { IconChevronDown } from '@tabler/icons-react';
 
 const JudgesSection = () => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true
   });
+
+  const [expandedJudge, setExpandedJudge] = useState<string | null>(null);
 
   const judges = [
     {
@@ -66,6 +71,96 @@ const JudgesSection = () => {
     }
   ];
 
+  // Mobile Judge Card Component
+  const MobileJudgeCard = ({ judge }: { judge: typeof judges[0] }) => {
+    const isExpanded = expandedJudge === judge.name;
+
+    return (
+      <motion.div
+        layout
+        className="w-full bg-neutral-900/50 rounded-xl overflow-hidden border border-neutral-800"
+        initial={false}
+        animate={{ height: isExpanded ? "auto" : "72px" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <div
+          className="p-4 flex items-center gap-4 cursor-pointer"
+          onClick={() => setExpandedJudge(isExpanded ? null : judge.name)}
+        >
+          <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-neutral-700">
+            <img
+              src={judge.image}
+              alt={judge.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-white font-semibold truncate">{judge.name}</h3>
+            <p className="text-sm text-neutral-400 truncate">{judge.role}</p>
+          </div>
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <IconChevronDown className="w-5 h-5 text-neutral-400" />
+          </motion.div>
+        </div>
+        
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="px-4 pb-4 pt-2 border-t border-neutral-800"
+            >
+              <div className="text-sm text-neutral-300 mb-2">
+                <span className="text-blue-400">{judge.company}</span>
+              </div>
+              <p className="text-sm text-neutral-400 leading-relaxed">
+                {judge.bio}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    );
+  };
+
+  // Desktop Judge Card Component
+  const DesktopJudgeCard = ({ judge }: { judge: typeof judges[0] }) => (
+    <FollowerPointerCard
+      title={
+        <div className="flex items-center gap-2">
+          <img
+            src={judge.image}
+            alt={judge.name}
+            className="w-5 h-5 rounded-full border border-white/20"
+          />
+          <span>{judge.name}</span>
+        </div>
+      }
+    >
+      <div className="group relative h-full overflow-hidden rounded-2xl border border-neutral-800 bg-black transition duration-300 hover:border-neutral-700 hover:bg-neutral-900/50">
+        <div className="relative aspect-square w-full overflow-hidden">
+          <img
+            src={judge.image}
+            alt={judge.name}
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
+        </div>
+        <div className="p-6">
+          <h3 className="text-xl font-bold text-white mb-1">{judge.name}</h3>
+          <div className="text-blue-400 font-mono text-sm mb-2">
+            {judge.role} @ {judge.company}
+          </div>
+          <p className="text-sm text-neutral-400">{judge.bio}</p>
+        </div>
+      </div>
+    </FollowerPointerCard>
+  );
+
   return (
     <section 
       id="judges" 
@@ -92,29 +187,19 @@ const JudgesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {judges.map((judge, index) => (
-            <div
-              key={judge.name}
-              className={`group relative transition-all duration-500 ease-out transform-gpu ${
-                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="aspect-square overflow-hidden rounded-lg mb-4 bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 transition-all duration-300 ease-out group-hover:border-neutral-700">
-                <img
-                  src={judge.image}
-                  alt={judge.name}
-                  className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-1">{judge.name}</h3>
-              <div className="text-blue-500 font-mono text-sm mb-2">
-                {judge.role} @ {judge.company}
-              </div>
-              <p className="text-sm text-neutral-400">{judge.bio}</p>
-            </div>
+        {/* Mobile Judges View */}
+        <div className="md:hidden space-y-3">
+          <AnimatePresence>
+            {judges.map((judge) => (
+              <MobileJudgeCard key={judge.name} judge={judge} />
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Desktop Judges Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {judges.map((judge) => (
+            <DesktopJudgeCard key={judge.name} judge={judge} />
           ))}
         </div>
       </div>

@@ -5,8 +5,47 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MEGA//HACK - World's Largest Hackathon</title>
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    
+    <!-- DNS Prefetch and Preconnect -->
+    <link rel="dns-prefetch" href="https://rsms.me">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <link rel="preconnect" href="https://rsms.me" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Meta tags -->
     <meta name="description" content="Join 100,000 developers in the world's largest hackathon. $1M+ prize pool. Make history.">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="https://rsms.me/inter/inter.css" as="style">
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="modulepreload" href="/src/App.tsx">
+    
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" media="print" onload="this.media='all'">
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+    
+    <!-- PWA support -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/icon-192x192.png">
+    
+    <!-- Preload fonts -->
+    <link 
+      rel="preload" 
+      href="https://rsms.me/inter/font-files/Inter-roman.var.woff2?v=3.19" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin
+    >
   </head>
   <body>
     <div id="root"></div>

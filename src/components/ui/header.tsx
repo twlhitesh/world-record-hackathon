@@ -1,21 +1,29 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { IconBolt, IconMenu2, IconX } from '@tabler/icons-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState('');
   
   const handleScroll = useCallback(() => {
     const scrolled = window.scrollY > 50;
-    const progress = Math.min(
-      window.scrollY / (document.documentElement.scrollHeight - window.innerHeight),
-      1
-    );
+    
+    const sections = ['about', 'sponsors', 'prizes', 'judges'];
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          setActiveSection(section);
+          break;
+        }
+      }
+    }
     
     requestAnimationFrame(() => {
       setIsScrolled(scrolled);
-      setScrollProgress(progress);
     });
   }, []);
 
@@ -26,10 +34,28 @@ export function Header() {
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
-    document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
+    // Fix for mobile menu scroll lock
+    if (!isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.overflow = '';
+      document.body.style.width = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
   };
 
-  const menuItems = ['About', 'Prizes', 'Judges', 'Sponsors'];
+  const menuItems = [
+    { id: 'about', label: 'About' },
+    { id: 'sponsors', label: 'Sponsors' },
+    { id: 'prizes', label: 'Prizes' },
+    { id: 'judges', label: 'Judges' }
+  ];
 
   const handleRegister = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -38,17 +64,25 @@ export function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out transform-gpu ${
-        isScrolled ? 'h-14' : 'h-16'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        isScrolled ? 'h-16' : 'h-20'
       }`}
     >
-      <nav className={`h-full backdrop-blur-md border-b transition-colors duration-300 ${
-        isScrolled ? 'bg-black/90 border-white/10' : 'bg-transparent border-transparent'
-      }`}>
-        <div className="flex items-center justify-between h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center transform-gpu">
-              <img src="https://pbs.twimg.com/profile_images/1880702021122342912/fe9TlQqJ_400x400.jpg" alt="Bolt Logo" className="w-5 h-5 text-white" />
+      <nav 
+        className={`h-full transition-colors duration-300 border-b ${
+          isScrolled || isMenuOpen
+            ? 'bg-black/90 backdrop-blur-md border-white/10' 
+            : 'bg-transparent border-transparent'
+        }`}
+      >
+        <div className="flex items-center justify-between h-full max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+              <img 
+                src="https://pbs.twimg.com/profile_images/1880702021122342912/fe9TlQqJ_400x400.jpg" 
+                alt="Bolt Logo" 
+                className="w-6 h-6"
+              />
             </div>
             <div>
               <div className="font-black text-xl tracking-tight flex items-center gap-1">
@@ -56,21 +90,25 @@ export function Header() {
                 <span className="text-blue-500">🗲</span>
                 <span className="hidden sm:block text-white">HACKATHON</span>
               </div>
-              <div className="text-[10px] text-neutral-500">
+              <div className="text-[10px] text-neutral-500 font-mono">
                 World's Largest Hackathon
               </div>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-6 text-sm">
-            {menuItems.map((item) => (
+          <div className="hidden md:flex items-center gap-8">
+            {menuItems.map(({ id, label }) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-neutral-300 hover:text-white transition-colors duration-300 ease-out relative group transform-gpu"
+                key={id}
+                href={`#${id}`}
+                className={`relative px-2 py-1 text-sm font-medium transition-colors ${
+                  activeSection === id ? 'text-white' : 'text-neutral-400 hover:text-white'
+                }`}
               >
-                {item}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
+                {label}
+                {activeSection === id && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+                )}
               </a>
             ))}
           </div>
@@ -79,14 +117,13 @@ export function Header() {
             <a 
               href="#register"
               onClick={handleRegister}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ease-out relative overflow-hidden group transform-gpu"
+              className="relative px-6 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium"
             >
-              <span className="relative z-10">Register</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+              Register Now
             </a>
             
             <button
-              className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors duration-300 ease-out transform-gpu"
+              className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center"
               onClick={handleMenuClick}
               aria-label="Toggle menu"
             >
@@ -94,28 +131,25 @@ export function Header() {
             </button>
           </div>
         </div>
-
-        <div 
-          className="h-0.5 bg-blue-500 origin-left transition-transform duration-300 ease-out transform-gpu"
-          style={{ transform: `scaleX(${scrollProgress})` }}
-        />
       </nav>
 
+      {/* Mobile Menu - Fixed positioning to prevent scroll issues */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 md:hidden transition-opacity duration-300 ease-out">
-          <div className="flex flex-col items-center justify-center h-full space-y-8">
-            {menuItems.map((item, index) => (
+        <div 
+          className="fixed inset-0 bg-black z-40 md:hidden"
+          style={{ top: isScrolled ? '64px' : '80px' }}
+        >
+          <div className="flex flex-col items-center justify-center h-full pb-20">
+            {menuItems.map(({ id, label }) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-2xl font-bold text-neutral-200 hover:text-white transition-colors duration-300 ease-out transform-gpu"
+                key={id}
+                href={`#${id}`}
+                className="text-4xl font-black text-neutral-200 hover:text-white py-4"
                 onClick={() => {
-                  setIsMenuOpen(false);
-                  document.body.style.overflow = '';
+                  handleMenuClick();
                 }}
-                style={{ transitionDelay: `${index * 50}ms` }}
               >
-                {item}
+                {label}
               </a>
             ))}
           </div>
