@@ -15,6 +15,7 @@
     "@react-spring/web": "^9.7.3",
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.0.51",
+    "@vercel/analytics": "^1.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cobe": "^0.6.3",

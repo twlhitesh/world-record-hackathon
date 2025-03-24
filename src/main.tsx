@@ -1,6 +1,7 @@
 import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import { initSmoothScroll } from './lib/smooth-scroll';
 import { Spinner } from './components/ui/spinner';
 import './index.css';
@@ -130,6 +131,7 @@ root.render(
         <App />
       </AnimatePresence>
     </Suspense>
+    <Analytics />
   </StrictMode>
 );
 
